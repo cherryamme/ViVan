@@ -798,9 +798,11 @@ def analyze():
     QSUB = args.useQsub
     VERBOSE = args.verbose
     confFile = args.configFile
+    #TAG1读取输入
     groupDict,filters = parseConfigFile(confFile)
     
     # Verify Input
+    #TAG2验证输入
     verifyInput(groupDict)
     # FIXMEverifyInput don't have .rbwt file.
     # only include features if all the groups have a feature file in them
@@ -812,7 +814,7 @@ def analyze():
             break
     else:
         INCLUDE_FEATURES=True
-    
+    #TAG2打印分组情况
     printGroups(groupDict)
     
     # if there are paired end samples, disregard the remove N argument
@@ -822,21 +824,26 @@ def analyze():
                 print('VIVAN: There are paired-end samples in the run, will not remove N bases')
                 REMOVE_N_READS=False
     if CLEANUP_ONLY:
+        #TAG4文件夹创建整理
         cleanup(groupDict,WEBSERVER)
         return
     # if alignment is required, check the qualities of the input files
     if ALIGN_AND_PILE:
+        #TAG5转换phred
         groupDict = fixQualFormats(groupDict,QSUB,ILLUMINA_FORMAT,VERBOSE,LIGHT,QUEUE)
     # only produce the analysis metrics (consensus, matrix, metrics)
     if ONLY_METRICS:
+        #TAG6生成矩阵
         produceVarMetrics(groupDict,confFile, STRAND_BIAS,QSUB, VERBOSE,LIGHT,QUEUE)
         return
     
     # clip and trim the sequence files
     if CLIP_AND_TRIM:
         groupDict = clipAndTrim(groupDict, QSUB, VERBOSE,LIGHT,QUEUE)
+        #TAG7修剪去接头
         #N reade will be removed only if clip and trim are also running
         if REMOVE_N_READS:
+            #TAG7修剪去接头
             removeNreads(groupDict, QSUB,VERBOSE,LIGHT,QUEUE)
             # now change all the names of the sample files
 
@@ -853,7 +860,9 @@ def analyze():
     # Either perform alignment and pileup or only pileup                
     if ALIGN_AND_PILE:
         print("RRRRRRRRR whatwhawtawhatwahwatwwahtawhawtawhatwhawtawhawtawhawt")
+        #TAG8比对 bwa
         Align(groupDict,NUM_O_GAPS, QSUB, ILLUMINA_FORMAT, VERBOSE, LIGHT, QUEUE)
+        #TAG9比对samtools mpileup
         Pile(groupDict, QSUB, ILLUMINA_FORMAT, VERBOSE, LIGHT, QUEUE)
     elif ONLY_PILEUP:
         print("whatwhawtawhatwahwatwwahtawhawtawhatwhawtawhawtawhawt")
@@ -862,22 +871,26 @@ def analyze():
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     # run the pileup 2 nucleotide rate script (pileup2nucleotideRate.py)
     if not SKIP_PILE2NUC:
+        #TAG10计算核苷酸信息Nucleotide Rate
         pileup2nucleotideRate(groupDict, filters,QSUB,REMOVE_N_READS,VERBOSE,LIGHT,QUEUE,SIZE_LIMIT)
     # run the variant annotation script (parseVariantFile.py)
     if not SKIP_VARANNO: 
+        #TAG11计算变异情况variant
         varAnnotation(groupDict, confFile,STRAND_BIAS,QSUB,VERBOSE,LIGHT,QUEUE)
     
     # produce run metrics
+    #TAG12生成矩阵
     produceVarMetrics(groupDict, confFile, STRAND_BIAS, QSUB, VERBOSE,LIGHT,QUEUE)
     
     # compare samples between and within groups
+    #TAG13比较组间差异
     compareGroups(confFile,STRAND_BIAS,QSUB,REMOVE_N_READS,INCLUDE_FEATURES,VERBOSE,LIGHT,QUEUE)
     print('Analysis done..(%s)\n'%(time.time()-startTime))
     summaryReport.append('Analysis done..(%s)\n'%(time.time()-startTime))
     
     summaryFile = open('summary.txt','w')
     summaryFile.write('\n'.join(summaryReport))
-    
+    #TAG14文件夹创建整理
     cleanup(groupDict,WEBSERVER)
     finalize()
     
