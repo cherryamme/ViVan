@@ -1,0 +1,38 @@
+### This is a configuration file required by the ViVan completeAnalysis.py script
+### it should contain all the information for the analysis to run
+### please update the different sections according to your analysis
+
+### This is the samples section
+### format : sampleName <tab> groupName <tab> fastq file1 [<tab> fastq file2 if paired-end] 
+### sample name should not start with a digit and should be unique for each sample. different samples can belong to the same group.
+
+#samples_start
+sample1	male	/home/jc/b2/SRR3105190_R1.fastq	/home/jc/b2/SRR3105190_R2.fastq	
+sample2	male	/home/jc/b2/SRR3105191_R1.fastq	/home/jc/b2/SRR3105191_R2.fastq	
+sample3	female	/home/jc/b2/SRR3105192_R1.fastq	/home/jc/b2/SRR3105192_R2.fastq
+sample4	female	/home/jc/b2/SRR3105193_R1.fastq	/home/jc/b2/SRR3105193_R2.fastq
+sample5	male	/home/jc/b2/SRR3105194_R1.fastq	/home/jc/b2/SRR3105194_R2.fastq
+sample6	male	/home/jc/b2/SRR3105195_R1.fastq	/home/jc/b2/SRR3105195_R2.fastq
+sample7	male	/home/jc/b2/SRR3105196_R1.fastq	/home/jc/b2/SRR3105196_R2.fastq
+sample8	male	/home/jc/b2/SRR3105197_R1.fastq	/home/jc/b2/SRR3105197_R2.fastq
+sample9	male	/home/jc/b2/SRR3105198_R1.fastq	/home/jc/b2/SRR3105198_R2.fastq
+sample10	male	/home/jc/b2/SRR3105199_R1.fastq	/home/jc/b2/SRR3105199_R2.fastq
+#samples_end
+
+### This is the reference and features section. 
+### format : groupName <tab> reference file <tab> features file
+### each group requires a reference sequence file and a features file (describing the different genes in the viral genome)
+### please see the example features file before creating one
+
+#referencesNfeatures_start
+male	/home/jc/ViVan/00_reference/GCF_000861825.2_ViralProj15428_genomic.fna	/home/jc/ViVan/VV-Source/sample-features-file
+female	/home/jc/ViVan/00_reference/GCF_000861825.2_ViralProj15428_genomic.fna	/home/jc/ViVan/VV-Source/sample-features-file
+#referencesNfeatures_end
+
+### This is the filters section where coverage and P-Value thresholds can be set
+### format : filterName (coverage/pval) <tab> value
+
+#filters_start
+coverage	10
+pval	0.05
+#filters_end
