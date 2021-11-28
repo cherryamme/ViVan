@@ -1,5 +1,5 @@
 # **ViVan** Fix Version
-[![GitHub stars](https://img.shields.io/github/stars/cherryamme/ViVan)](https://github.com/cherryamme/ViVan/stargazers)[![GitHub issues](https://img.shields.io/github/issues/cherryamme/ViVan)](https://github.com/cherryamme/ViVan/issues)[![GitHub license](https://img.shields.io/github/license/cherryamme/ViVan)](https://github.com/cherryamme/ViVan)
+[![GitHub stars](https://img.shields.io/github/stars/cherryamme/ViVan?color=red&logo=Adafruit)](https://github.com/cherryamme/ViVan/stargazers)  ![GitHub repo size](https://img.shields.io/github/repo-size/cherryamme/ViVan?color=yellow&label=Project%20Size&logo=Blueprint)   ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cherryamme/ViVan?logo=Python&?logoColor=red)   ![GitHub last commit](https://img.shields.io/github/last-commit/cherryamme/ViVan) 
 
 ![Vivanlogo](ViVan_logo.png)
 
