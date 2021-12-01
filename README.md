@@ -32,6 +32,16 @@ ViVan_flow.png 显示了该软件的执行图，以/completeAnalysis.py 为核�
 
 配置文件均放置在运行工作目录，fastq文件和参考基因组任意位置均可
 
+## 运行主python文件
+
+./completeAnalysis.py
+
+在该文件的前面配置工作目录变量。如：SCRIPTS_DIR = '/home/jc/ViVan/VV-source-py3'
+
+将SCRIPTS_DIR更改为工作的主要目录。在Linux下可用pwd命令查看。
+
+配置使用的bwa软件的位置。如：BWA_PATH = '%s/bwa-0.7.8/bwa'%SCRIPTS_DIR  #一半不用修改此处，软件包内有提供bwa
+
 ## config文件
 **config文件 需要配置输入的样本**
 
@@ -80,7 +90,7 @@ NC_003977.2_Hepatitis_B_virus_(strain_ayw)_genome	1816	2451	CDS-HBVgp4
 ## 运行示例:
 
 在工作目录下运行：
-如果输入文件为fastq，则-a参数为必需，使用bwa比对，samtools index、sort、mpileup。
+如果输入文件为fastq，则-a参数为必需，即打开bwa比对，samtools index、sort、mpileup。
 -f 后输入config文件，-c参数表示reads经过修剪和去接头
 ```shell
 python completeAnalysis.py -c -I -a -f sample-configuration-file
