@@ -40,7 +40,7 @@ ViVan_flow.png 显示了该软件的执行图，以/completeAnalysis.py 为核�
 
 将SCRIPTS_DIR更改为工作的主要目录。在Linux下可用pwd命令查看。
 
-配置使用的bwa软件的位置。如：BWA_PATH = '%s/bwa-0.7.8/bwa'%SCRIPTS_DIR  #一半不用修改此处，软件包内有提供bwa
+配置使用的bwa软件的位置。如：BWA_PATH = '%s/bwa-0.7.8/bwa'%SCRIPTS_DIR  #一般不用修改此处，软件包内有提供bwa
 
 ## config文件
 **config文件 需要配置输入的样本**
