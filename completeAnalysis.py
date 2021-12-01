@@ -275,6 +275,7 @@ def Align(groupDict,NUM_O_GAPS,QSUB,ILLUMINA_FORMAT,VERBOSE,LIGHT,QUEUE):
             print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             bamNsortCommand = 'samtools view -bS %s.sam | samtools sort -o %s_sorted.bam'%(sample,sample)
             #TODO 这个地方的尾缀不是.bam的  这合理吗
+            #DONE - %s_sorted 修改为 -o %s_sorted.bam : 运行成功
             indexCommand = 'samtools index %s_sorted.bam'%sample
             
             commands = [alnCommand,bamNsortCommand,indexCommand]
